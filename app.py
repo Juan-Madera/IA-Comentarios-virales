@@ -202,7 +202,7 @@ elif menu == "Análisis y Predicción de Comentarios":
         st.subheader("Comentario sugerido:")
         st.text_area("Comentario generado:", value=comentario, height=100)
 elif menu == "Gráficas":
-    st.title("📊 Gráficas de análisis de comentarios")
+    st.title("Gráficas de análisis de comentarios")
 
     st.markdown("Estas gráficas muestran ejemplos simulados basados en análisis de sentimientos, probabilidad de viralidad y uso de emojis.")
 
