@@ -32,7 +32,7 @@ menu = st.selectbox(
 )
 
 # Secciones
-if menu == "¿Cómo funciona Viiper?":
+if menu == "¿Cómo funciona Viipeeeer?":
     st.subheader("¿Cómo funciona Viiper?")
     st.write("""
     Viiper es una **inteligencia artificial avanzada** diseñada para analizar comentarios escritos por usuarios, y proporciona dos evaluaciones principales:
