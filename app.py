@@ -32,10 +32,10 @@ menu = st.selectbox(
 )
 
 # Secciones
-if menu == "¿Cómo funciona Viipeeeer?":
+if menu == "¿Cómo funciona Viiper?":
     st.subheader("¿Cómo funciona Viiper?")
     st.write("""
-    Viiper es una **inteligencia artificial avanzada** diseñada para analizar comentarios escritos por usuarios, y proporciona dos evaluaciones principales:
+    Viipeeeer es una **inteligencia artificial avanzada** diseñada para analizar comentarios escritos por usuarios, y proporciona dos evaluaciones principales:
 
     - **Análisis de Sentimiento**:  
       Viiper utiliza modelos de procesamiento de lenguaje natural para identificar el **sentimiento** detrás de cada comentario. Esto determina si el contenido transmite una emoción **positiva**, **negativa** o **neutral**. Al identificar estas emociones, Viiper te permite comprender mejor como podria reaccionar la audiencia ante tu mensaje.
