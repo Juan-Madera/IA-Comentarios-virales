@@ -27,7 +27,8 @@ menu = st.selectbox(
         "¿Cómo funciona Viiper?",
         "¿Tienes alguna duda?",
         "Consejos para hacer tu comentario viral",
-        "Análisis por tema"
+        "Análisis por tema",
+        "Gráficas"  
     ]
 )
 
@@ -200,6 +201,61 @@ elif menu == "Análisis y Predicción de Comentarios":
         comentario = generar_comentario_viral()
         st.subheader("Comentario sugerido:")
         st.text_area("Comentario generado:", value=comentario, height=100)
+elif menu == "Gráficas":
+    st.title("📊 Gráficas de análisis de comentarios")
+
+    st.markdown("Estas gráficas muestran ejemplos simulados basados en análisis de sentimientos, probabilidad de viralidad y uso de emojis.")
+
+    # ---------- SIMULACIÓN DE DATOS ----------
+    n = 300
+    sentimientos = ["Positivo", "Negativo", "Neutral"]
+    sentimientos_data = random.choices(sentimientos, weights=[0.5, 0.3, 0.2], k=n)
+    viralidad_prob = [random.betavariate(2, 5) for _ in range(n)]  # Entre 0 y 1
+
+    contiene_emoji = [random.choice([True, False]) for _ in range(n)]
+    palabras = random.choices(
+        ["increíble", "terrible", "épico", "emocionante", "falla", "nuevo", "viral", "inesperado", "genial"],
+        k=n
+    )
+
+    df = pd.DataFrame({
+        "Sentimiento": sentimientos_data,
+        "Prob_viralidad": viralidad_prob,
+        "Emoji": contiene_emoji,
+        "Palabra": palabras
+    })
+
+    # ---------- GRÁFICA 1: DISTRIBUCIÓN DE SENTIMIENTOS ----------
+    st.subheader("1. Distribución de sentimientos")
+    st.bar_chart(df["Sentimiento"].value_counts())
+
+    # ---------- GRÁFICA 2: HISTOGRAMA DE PROBABILIDAD DE VIRALIDAD ----------
+    st.subheader("2. Probabilidad de viralidad")
+    st.line_chart(df["Prob_viralidad"].rolling(10).mean())  # Suavizado
+
+    # ---------- GRÁFICA 3: COMPARACIÓN DE VIRALIDAD POR SENTIMIENTO ----------
+    st.subheader("3. Promedio de viralidad por tipo de sentimiento")
+    st.bar_chart(df.groupby("Sentimiento")["Prob_viralidad"].mean())
+
+    # ---------- GRÁFICA 4: FRECUENCIA DE EMOJIS ----------
+    st.subheader("4. Frecuencia de comentarios con emoji")
+    emoji_counts = pd.Series(df["Emoji"]).value_counts()
+    st.bar_chart(emoji_counts.rename({True: "Con emoji", False: "Sin emoji"}))
+
+    # ---------- GRÁFICA 5: NUBE DE PALABRAS ----------
+    from wordcloud import WordCloud
+    import matplotlib.pyplot as plt
+
+    st.subheader("5. Palabras más frecuentes (WordCloud)")
+    texto = " ".join(df["Palabra"].tolist())
+    wc = WordCloud(width=600, height=300, background_color="white", colormap="Set2").generate(texto)
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.imshow(wc, interpolation="bilinear")
+    ax.axis("off")
+    st.pyplot(fig)
+
+
 
 
 st.markdown(
