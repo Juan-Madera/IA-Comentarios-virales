@@ -1,5 +1,7 @@
 streamlit
 pandas
-scikit-learn
-joblib
 emoji
+joblib
+matplotlib
+wordcloud
+scikit-learn
